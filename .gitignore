@@ -8,3 +8,4 @@ bazel-SPIRV-Reflect
 bazel-testlogs
 /.vs
 /.vscode
+MODULE.bazel.lock
