@@ -1,0 +1,12 @@
+cc_library(
+    name = "spirv-reflect",
+    srcs = [
+        "spirv_reflect.c",
+        "spirv_reflect.cpp",
+    ],
+    hdrs = [
+        "spirv_reflect.h",
+    ],
+    includes = ["."],
+    visibility = ["//visibility:public"],
+)
