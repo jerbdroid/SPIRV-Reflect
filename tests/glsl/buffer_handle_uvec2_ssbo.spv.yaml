@@ -2,26 +2,26 @@
 ---
 all_type_descriptions:
   - &td0
-    id: 10
-    op: 29
+    id: 7
+    op: 23
     type_name: 
-    struct_member_name: 
+    struct_member_name: "bufferId"
     storage_class: 0 # UniformConstant
-    type_flags: 0x20000004 # ARRAY INT 
+    type_flags: 0x00000104 # VECTOR INT 
     decoration_flags: 0x00000000 # NONE
     traits:
       numeric:
         scalar: { width: 32, signedness: 0 }
-        vector: { component_count: 0 }
+        vector: { component_count: 2 }
         matrix: { column_count: 0, row_count: 0, stride: 0 }
       image: { dim: 0, depth: 0, arrayed: 0, ms: 0, sampled: 0, image_format: 0 } # dim=1D image_format=Unknown
-      array: { dims_count: 1, dims: [0,], stride: 4 }
+      array: { dims_count: 0, dims: [], stride: 0 }
     member_count: 0
     members:
   - &td1
-    id: 7
+    id: 8
     op: 30
-    type_name: "type.RWByteAddressBuffer"
+    type_name: "T1"
     struct_member_name: 
     storage_class: -1 # NOT APPLICABLE
     type_flags: 0x10080000 # STRUCT EXTERNAL_BLOCK 
@@ -36,41 +36,24 @@ all_type_descriptions:
     member_count: 1
     members:
       - *td0
-  - &td2
-    id: 13
-    op: 21
-    type_name: 
-    struct_member_name: 
-    storage_class: -1 # NOT APPLICABLE
-    type_flags: 0x00000004 # INT 
-    decoration_flags: 0x00000000 # NONE
-    traits:
-      numeric:
-        scalar: { width: 32, signedness: 0 }
-        vector: { component_count: 0 }
-        matrix: { column_count: 0, row_count: 0, stride: 0 }
-      image: { dim: 0, depth: 0, arrayed: 0, ms: 0, sampled: 0, image_format: 0 } # dim=1D image_format=Unknown
-      array: { dims_count: 0, dims: [], stride: 0 }
-    member_count: 0
-    members:
 all_block_variables:
   - &bv0
-    name: 
+    name: "bufferId"
     offset: 0
     absolute_offset: 0
-    size: 0
-    padded_size: 0
+    size: 8
+    padded_size: 8
     decorations: 0x00000000 # NONE
     numeric:
       scalar: { width: 32, signedness: 0 }
-      vector: { component_count: 0 }
+      vector: { component_count: 2 }
       matrix: { column_count: 0, row_count: 0, stride: 0 }
     array: { dims_count: 0, dims: [], stride: 0 }
     member_count: 0
     members:
     type_description: *td0
   - &bv1
-    name: "g_MaterialData"
+    name: "ssbo"
     offset: 0
     absolute_offset: 0
     size: 0
@@ -87,63 +70,42 @@ all_block_variables:
     type_description: *td1
 all_descriptor_bindings:
   - &db0
-    spirv_id: 3
-    name: "g_MaterialData"
-    binding: 4
+    spirv_id: 10
+    name: "ssbo"
+    binding: 0
     input_attachment_index: 0
-    set: 1
+    set: 0
     decoration_flags: 0x00000000 # NONE
     descriptor_type: 7 # VK_DESCRIPTOR_TYPE_STORAGE_BUFFER
     resource_type: 8 # UAV
     image: { dim: 0, depth: 0, arrayed: 0, ms: 0, sampled: 0, image_format: 0 } # dim=1D image_format=Unknown
-    block: *bv1 # "g_MaterialData"
+    block: *bv1 # "ssbo"
     array: { dims_count: 0, dims: [] }
     accessed: 1
     uav_counter_id: 4294967295
     uav_counter_binding:
-    ByteAddressBuffer offsets: [4, 5, 11, 13]
     type_description: *td1
-    word_offset: { binding: 130, set: 126 }
-    user_type: RWByteAddressBuffer
+    word_offset: { binding: 118, set: 114 }
 all_interface_variables:
-  - &iv0
-    spirv_id: 2
-    name: 
-    location: 4294967295
-    storage_class: 1 # Input
-    semantic: 
-    decoration_flags: 0x00000010 # BUILT_IN 
-    built_in: 6 # InstanceId
-    numeric:
-      scalar: { width: 32, signedness: 0 }
-      vector: { component_count: 0 }
-      matrix: { column_count: 0, row_count: 0, stride: 0 }
-    array: { dims_count: 0, dims: [], stride: 0 }
-    member_count: 0
-    members:
-    format: 98 # VK_FORMAT_R32_UINT
-    type_description: *td2
-    word_offset: { location: 0 }
 module:
-  generator: 14 # Google spiregg
-  entry_point_name: "ClosestHit0"
-  entry_point_id: 1
-  source_language: 5 # HLSL
-  source_language_version: 640
-  spirv_execution_model: 5316 # ClosestHitKHR
-  shader_stage: 0x00000400 # CLOSEST_HIT
+  generator: 8 # Khronos Glslang Reference Front End
+  entry_point_name: "main"
+  entry_point_id: 4
+  source_language: 2 # GLSL
+  source_language_version: 460
+  spirv_execution_model: 5 # GLCompute
+  shader_stage: 0x00000020 # CS
   descriptor_binding_count: 1
   descriptor_bindings:
-    - *db0 # "g_MaterialData"
+    - *db0 # "ssbo"
   descriptor_set_count: 1
   descriptor_sets:
-  - set: 1
+  - set: 0
     binding_count: 1
     bindings:
-      - *db0 # "g_MaterialData"
-  input_variable_count: 1,
+      - *db0 # "ssbo"
+  input_variable_count: 0,
   input_variables:
-    - *iv0 # 
   output_variable_count: 0,
   output_variables:
   push_constant_count: 0,
